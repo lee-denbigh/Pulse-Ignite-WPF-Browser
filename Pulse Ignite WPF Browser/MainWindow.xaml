@@ -1,0 +1,67 @@
+﻿<Window x:Class="Pulse_Ignite_WPF_Browser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:local="clr-namespace:Pulse_Ignite_WPF_Browser"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="610.356" Width="1063.586" Background="{DynamicResource wbBackground}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="menuBarRow" Height="25" />
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!-- Top Menu -->
+        <Menu Height="25" VerticalAlignment="Top" Background="{DynamicResource wbSecondaryBack}" ItemContainerStyle="{StaticResource wbMenuItem}">
+            <MenuItem Header="File" Foreground="{DynamicResource wbGrey}" ItemContainerStyle="{StaticResource wbSubMenuItem}">
+                <MenuItem x:Name="newTabMenuItem" Header="New Tab" Click="newTabMenuItem_Click" />
+                <MenuItem x:Name="closeTabMenuItem" Header="Close Tab" Click="closeTabMenuItem_Click" />
+                <Separator/>
+                <MenuItem x:Name="SettingsMenuItem" Header="Settings" Click="SettingsMenuItem_Click" />
+            </MenuItem>
+            
+        </Menu>
+
+        <!--AddressBar-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--Nav Buttons-->
+            <StackPanel Orientation="Horizontal" Height="32" Margin="10,0">
+                <Button x:Name="bkBtn" Width="32" Margin="0,0,10,0" Click="bkBtn_Click" BorderThickness="0" Background="{x:Null}">
+                    <Viewbox Height="32" Width="32">
+                        <Image Source="/Imgs/ArrowL.png" />
+                    </Viewbox>
+                </Button>
+                <Button x:Name="fwdBtn" Width="32" Click="fwdBtn_Click" Margin="0,0,10,0" BorderThickness="0" Background="{x:Null}">
+                    <Viewbox Height="32" Width="32">
+                        <Image Source="/Imgs/Arrow.png" />
+                    </Viewbox>
+                </Button>
+                
+            </StackPanel>
+
+            <Button x:Name="rfshBtn" Width="32" Height="32" Margin="0,0,10,0" BorderThickness="0" HorizontalAlignment="Right" Click="rfshBtn_Click" Background="{x:Null}">
+                <Viewbox>
+                    <Image Source="/Imgs/Refresh.png" />
+                </Viewbox>
+            </Button>
+
+            <!--Address Bar-->
+            <TextBox x:Name="AddressBar" Grid.Column="1" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" KeyDown="AddressBar_KeyDown" />
+        </Grid>
+
+        <!-- Tab Control -->
+        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="tabControl_SelectionChanged" Padding="0">
+            <TabItem Header="Blank Page" BorderThickness="0">
+                <cefSharp:ChromiumWebBrowser x:Name="defaultBrowser" Address="https://www.google.co.uk" Padding="0"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
