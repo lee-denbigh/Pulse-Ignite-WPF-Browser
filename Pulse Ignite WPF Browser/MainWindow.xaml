@@ -21,7 +21,6 @@
                 <Separator/>
                 <MenuItem x:Name="SettingsMenuItem" Header="Settings" Click="SettingsMenuItem_Click" />
             </MenuItem>
-            
         </Menu>
 
         <!--AddressBar-->
